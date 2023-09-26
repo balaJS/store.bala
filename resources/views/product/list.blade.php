@@ -1,8 +1,8 @@
-@include('includes.head', array('html_title'=>'Product listing', 'body_class' => 'product-listing-page'))
+@extends('layouts.app')
 
+@section('content')
 <section style="background-color: #eee;">
     <div class="container-fluid py-5">
-        @include('includes.nav')
         <div id="products" class="row view-group">
             @forelse ($products as $product)
             <div class="item col-xs-4 col-lg-4">
@@ -35,4 +35,4 @@
     </div>
 </section>
 
-@include('includes.footer')
+@endsection

@@ -1,7 +1,6 @@
-@include('includes.head', array('html_title'=>'Product detail', 'body_class' => 'product-listing-page'))
+@extends('layouts.app')
 
-@include('includes.nav')
-
+@section('content')
 <div class="container-fluid mt-5 mb-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
@@ -33,4 +32,4 @@
     </div>
 </div>
 
-@include('includes.footer')
+@endsection

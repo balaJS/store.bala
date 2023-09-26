@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Products;
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,13 @@ use App\Http\Controllers\Products;
 |
 */
 
-Route::get('/', [Products::class, 'list']);
-Route::get('/product/{id}/{slug}', [Products::class, 'detail']);
+
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::middleware("auth")->group(function () {
+    Route::get('/', [Products::class, 'list'])->name('products-list');
+    Route::get('/product/{id}/{slug}', [Products::class, 'detail']);
+});
