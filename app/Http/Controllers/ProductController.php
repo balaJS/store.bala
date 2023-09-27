@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
-class Products extends Controller
+class ProductController extends Controller
 {
     private $model;
 
     public function __construct()
     {
-        $this->model = new Product;
     }
 
     public function index()
@@ -21,11 +20,13 @@ class Products extends Controller
 
     public function list()
     {
-        return view('product.list', ['products' => $this->model->take(10)->get()]);
+        return view('product.list', ['products' => Product::take(10)->get()]);
     }
 
     public function detail($id, $slug)
     {
-        return view('product.detail', ['product' => $this->model->FindOrFail($id)]);
+        $product = Product::FindOrFail($id);
+        $intent = auth()->user()->createSetupIntent();
+        return view('product.detail', compact('product', 'intent'));
     }
 }

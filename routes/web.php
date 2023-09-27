@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Products;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +12,17 @@ use App\Http\Controllers\Products;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PlanController;
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware("auth")->group(function () {
-    Route::get('/', [Products::class, 'list'])->name('products-list');
-    Route::get('/product/{id}/{slug}', [Products::class, 'detail']);
+    Route::get('/', [ProductController::class, 'list'])->name('products-list');
+    Route::get('/product/{id}/{slug}', [ProductController::class, 'detail']);
+    Route::post('/purchase/{id}', [PlanController::class, 'purchase'])->name('purchase');
+    Route::get('/success', [PlanController::class, 'success'])->name('success');
 });
