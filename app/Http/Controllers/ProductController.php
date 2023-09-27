@@ -7,8 +7,6 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    private $model;
-
     public function __construct()
     {
     }
